@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สมัครสมาชิก</title>
+    <style>
+    </style>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <div class="icon">👤</div>
+            <h1 class="form-title">สมัครสมาชิก</h1>
+            <p class="form-subtitle">กรอกข้อมูลของคุณเพื่อเริ่มต้นใช้งาน</p>
+        </div>
+
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="fullName" class="form-label">ชื่อ-นามสกุล</label>
+                <input 
+                    type="text" 
+                    id="fullName" 
+                    name="fullName" 
+                    class="form-input" 
+                    placeholder="กรุณากรอกชื่อ-นามสกุล"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">อีเมล</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    class="form-input" 
+                    placeholder="example@email.com"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">รหัสผ่าน</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    class="form-input" 
+                    placeholder="กรุณากรอกรหัสผ่าน"
+                    required
+                    minlength="6"
+                >
+            </div>
+
+            <button type="submit" class="submit-button">
+                สมัครสมาชิก
+            </button>
+        </form>
+
+        <div class="form-footer">
+            <p class="form-footer-text">
+                มีบัญชีอยู่แล้ว? 
+                <a href="#" class="form-footer-link">เข้าสู่ระบบ</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (fullName && email && password) {
+                // Simulate successful registration
+                alert('สมัครสมาชิกสำเร็จ! ยินดีต้อนรับ ' + fullName);
+                
+                // Reset form
+                this.reset();
+            } else {
+                alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+            }
+        });
+
+        // Add input animation effects
+        const inputs = document.querySelectorAll('.form-input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9747e4f50598731f',t:'MTc1NjA5MTQwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

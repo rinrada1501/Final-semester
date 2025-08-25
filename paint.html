@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เปลี่ยนสีพื้นหลัง</title>
+    <style>
+    </style>
+    <link rel="stylesheet" href="style5.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="icon">🎨</div>
+            <h1 class="title">เปลี่ยนสีพื้นหลัง</h1>
+            <p class="subtitle">คลิกปุ่มสีที่ต้องการเพื่อเปลี่ยนสีพื้นหลังของหน้าเว็บ</p>
+        </div>
+
+        <div class="button-container">
+            <button id="redButton" class="color-button red-button">
+                🔴 แดง
+            </button>
+            <button id="greenButton" class="color-button green-button">
+                🟢 เขียว
+            </button>
+            <button id="blueButton" class="color-button blue-button">
+                🔵 น้ำเงิน
+            </button>
+        </div>
+
+        <div class="current-color">
+            <div class="current-color-label">สีพื้นหลังปัจจุบัน:</div>
+            <div id="currentColorDisplay" class="current-color-display">ม่วง (เริ่มต้น)</div>
+        </div>
+    </div>
+
+    <script>
+        // รับ reference ของ elements ที่ต้องใช้
+        const body = document.body;
+        const redButton = document.getElementById('redButton');
+        const greenButton = document.getElementById('greenButton');
+        const blueButton = document.getElementById('blueButton');
+        const currentColorDisplay = document.getElementById('currentColorDisplay');
+
+        // ฟังก์ชันสำหรับเปลี่ยนสีพื้นหลัง
+        function changeBackgroundColor(color, colorName) {
+            // ลบ class สีเก่าทั้งหมด
+            body.classList.remove('bg-red', 'bg-green', 'bg-blue');
+            
+            // เพิ่ม class สีใหม่
+            body.classList.add(`bg-${color}`);
+            
+            // อัพเดทการแสดงสีปัจจุบัน
+            currentColorDisplay.textContent = colorName;
+            
+            // เพิ่มเอฟเฟกต์การเปลี่ยนสี
+            currentColorDisplay.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                currentColorDisplay.style.transform = 'scale(1)';
+            }, 200);
+            
+            // แสดงข้อความใน console
+            console.log(`เปลี่ยนสีพื้นหลังเป็น: ${colorName}`);
+        }
+
+        // เพิ่ม Event Listeners สำหรับปุ่มแต่ละปุ่ม
+        redButton.addEventListener('click', function() {
+            changeBackgroundColor('red', 'แดง');
+            
+            // เพิ่มเอฟเฟกต์พิเศษสำหรับปุ่มที่ถูกคลิก
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+
+        greenButton.addEventListener('click', function() {
+            changeBackgroundColor('green', 'เขียว');
+            
+            // เพิ่มเอฟเฟกต์พิเศษสำหรับปุ่มที่ถูกคลิก
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+
+        blueButton.addEventListener('click', function() {
+            changeBackgroundColor('blue', 'น้ำเงิน');
+            
+            // เพิ่มเอฟเฟกต์พิเศษสำหรับปุ่มที่ถูกคลิก
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+
+        // เพิ่มการทำงานด้วยคีย์บอร์ด (เพิ่มเติม)
+        document.addEventListener('keydown', function(event) {
+            switch(event.key.toLowerCase()) {
+                case 'r':
+                    redButton.click();
+                    break;
+                case 'g':
+                    greenButton.click();
+                    break;
+                case 'b':
+                    blueButton.click();
+                    break;
+            }
+        });
+
+        // เพิ่มการแสดงคำแนะนำ
+        console.log('💡 เคล็ดลับ: คุณสามารถใช้คีย์บอร์ดได้ด้วย!');
+        console.log('- กด R สำหรับสีแดง');
+        console.log('- กด G สำหรับสีเขียว');
+        console.log('- กด B สำหรับสีน้ำเงิน');
+
+        // เพิ่มเอฟเฟกต์การโหลดหน้า
+        window.addEventListener('load', function() {
+            const container = document.querySelector('.container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(50px)';
+            
+            setTimeout(() => {
+                container.style.transition = 'all 0.8s ease';
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9747f49175f17335',t:'MTc1NjA5MjA0NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

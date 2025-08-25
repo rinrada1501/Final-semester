@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เครื่องคิดเลขบวกเลข</title>
+    <style>
+    </style>
+    <link rel="stylesheet" href="style4.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator-header">
+            <div class="calculator-icon">🧮</div>
+            <h1 class="calculator-title">เครื่องคิดเลขบวกเลข</h1>
+            <p class="calculator-subtitle">กรอกตัวเลข 2 จำนวนเพื่อคำนวณผลรวม</p>
+        </div>
+
+        <div class="input-group">
+            <label for="number1" class="input-label">ตัวเลขที่ 1</label>
+            <input 
+                type="number" 
+                id="number1" 
+                class="number-input" 
+                placeholder="กรอกตัวเลขที่ 1"
+                step="any"
+            >
+        </div>
+
+        <div class="plus-sign">+</div>
+
+        <div class="input-group">
+            <label for="number2" class="input-label">ตัวเลขที่ 2</label>
+            <input 
+                type="number" 
+                id="number2" 
+                class="number-input" 
+                placeholder="กรอกตัวเลขที่ 2"
+                step="any"
+            >
+        </div>
+
+        <button onclick="calculateSum()" class="calculate-button">
+            🔢 คำนวณ
+        </button>
+
+        <div class="result-section">
+            <div class="result-label">ผลรวม</div>
+            <div id="result" class="result-display">
+                กรุณากรอกตัวเลขแล้วกดคำนวณ
+            </div>
+        </div>
+
+        <button onclick="clearCalculator()" class="clear-button">
+            🗑️ ล้างข้อมูล
+        </button>
+    </div>
+
+    <script>
+        function calculateSum() {
+            // รับค่าจาก input fields
+            const number1 = parseFloat(document.getElementById('number1').value);
+            const number2 = parseFloat(document.getElementById('number2').value);
+            const resultElement = document.getElementById('result');
+            
+            // ตรวจสอบว่าผู้ใช้กรอกตัวเลขหรือไม่
+            if (isNaN(number1) || isNaN(number2)) {
+                resultElement.innerHTML = '❌ กรุณากรอกตัวเลขให้ครบทั้ง 2 ช่อง';
+                resultElement.style.color = '#e74c3c';
+                return;
+            }
+            
+            // คำนวณผลรวม
+            const sum = number1 + number2;
+            
+            // แสดงผลรวม
+            resultElement.innerHTML = `${sum}`;
+            resultElement.style.color = '#74b9ff';
+            
+            // เพิ่ม animation
+            resultElement.classList.remove('result-animate');
+            setTimeout(() => {
+                resultElement.classList.add('result-animate');
+            }, 10);
+            
+            // แสดงข้อความแจ้งเตือน
+            console.log(`การคำนวณ: ${number1} + ${number2} = ${sum}`);
+        }
+        
+        function clearCalculator() {
+            // ล้างค่าใน input fields
+            document.getElementById('number1').value = '';
+            document.getElementById('number2').value = '';
+            
+            // ล้างผลลัพธ์
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = 'กรุณากรอกตัวเลขแล้วกดคำนวณ';
+            resultElement.style.color = '#636e72';
+            resultElement.classList.remove('result-animate');
+        }
+        
+        // เพิ่มการทำงานเมื่อกด Enter
+        document.getElementById('number1').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('number2').focus();
+            }
+        });
+        
+        document.getElementById('number2').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateSum();
+            }
+        });
+        
+        // เพิ่มการคำนวณแบบ real-time (ถ้าต้องการ)
+        function autoCalculate() {
+            const number1 = parseFloat(document.getElementById('number1').value);
+            const number2 = parseFloat(document.getElementById('number2').value);
+            
+            if (!isNaN(number1) && !isNaN(number2)) {
+                calculateSum();
+            }
+        }
+        
+        // Uncomment บรรทัดด้านล่างถ้าต้องการให้คำนวณอัตโนมัติเมื่อพิมพ์
+        // document.getElementById('number1').addEventListener('input', autoCalculate);
+        // document.getElementById('number2').addEventListener('input', autoCalculate);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9747ecb88682731f',t:'MTc1NjA5MTcyMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
